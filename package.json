@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "antd": "^5.15.0",
+    "mahgen": "^1.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "riichi": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
@@ -24,5 +27,11 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "typescript": "^5.2.2",
     "vite": "^5.1.4"
+  },
+  "prettier": {
+    "printWidth": 140,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }
