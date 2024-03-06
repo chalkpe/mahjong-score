@@ -2598,10 +2598,9 @@ reusify@^1.0.4:
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
 
-riichi@^1.2.0:
+"riichi@github:1Computer1/riichi":
   version "1.2.0"
-  resolved "https://registry.yarnpkg.com/riichi/-/riichi-1.2.0.tgz#15301a8e51eb7d207eb03a94114e9247abab154e"
-  integrity sha512-sNL+RjL19Y1tJfsEqS1UETTcSMuCYLuKkv2XtQqqY7bj8TF3Qd847qeHFubsmFoEIwskTPCJEVdJVttqvmdImQ==
+  resolved "https://codeload.github.com/1Computer1/riichi/tar.gz/7e0a8f08dff9c874a1c2685eb2533bf18655dded"
   dependencies:
     agari "^1.1.0"
     syanten "^1.5.0"
