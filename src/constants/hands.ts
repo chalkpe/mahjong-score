@@ -1,3 +1,29 @@
+/**
+ * @license Hannah Park
+ *
+ * MIT License
+ *
+ * Copyright (c) 2022 Hannah Park
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 export const HANDS = [
   '2m3m4m3s3s3s4s4s4s5s6s8s8s+7s+23',
   '2m2m3m3m4m4m4m4m4s5s6s8s8s+8s+24',
@@ -10025,5 +10051,5 @@ export const HANDS = [
   '1m2m3m4m4m6m8m1p2p3p1s2s3s7m+21',
   '3m4m5m6m6m3p4p5p2s3s4s6s7s8s+24',
   '2m3m4m6m7m8m6p7p8p3s5s7s7s+4s+24',
-  '2m2m2m5m5m3p3p3p3s3s4s5s5s4s+13'
+  '2m2m2m5m5m3p3p3p3s3s4s5s5s4s+13',
 ]
