@@ -1,9 +1,13 @@
-import Riichi from 'riichi'
-import translation from '../constants/translation'
 import { useCallback, useEffect, useState } from 'react'
 
-const calc = (hand: string, localYaku: boolean): Riichi.Result => {
-  const result = new Riichi(hand, { allLocalYaku: localYaku }).calc()
+import Riichi from 'riichi'
+import translation from '../constants/translation'
+
+import { useAtomValue } from 'jotai'
+import { isLocalYakuAtom, isManganAtom } from '../store/mode'
+
+const calc = (hand: string, isLocalYaku: boolean): Riichi.Result => {
+  const result = new Riichi(hand, { allLocalYaku: isLocalYaku }).calc()
   return {
     ...result,
     han: result.yakuman ? 13 : result.han,
@@ -25,11 +29,11 @@ export interface Hand {
   jikaze: string
 }
 
-const getRandomHand = (hands: string[], localYaku: boolean): Hand => {
+const getRandomHand = (hands: string[], isLocalYaku: boolean): Hand => {
   const hand = hands[Math.floor(Math.random() * hands.length)]
 
-  const result = calc(hand, localYaku)
-  if (!result.isAgari || !Object.keys(result.yaku).length) return getRandomHand(hands, localYaku)
+  const result = calc(hand, isLocalYaku)
+  if (!result.isAgari || !Object.keys(result.yaku).length) return getRandomHand(hands, isLocalYaku)
 
   const parts = hand.split('+')
   if (parts.length === 3) {
@@ -53,12 +57,10 @@ const getRandomHand = (hands: string[], localYaku: boolean): Hand => {
   }
 }
 
-interface UseHandProps {
-  isMangan: boolean
-  localYaku: boolean
-}
+const useHand = () => {
+  const isMangan = useAtomValue(isManganAtom)
+  const isLocalYaku = useAtomValue(isLocalYakuAtom)
 
-const useHand = ({ isMangan, localYaku }: UseHandProps) => {
   const [hands, setHands] = useState<string[]>()
   const [manganHands, setManganHands] = useState<string[]>()
 
@@ -69,15 +71,15 @@ const useHand = ({ isMangan, localYaku }: UseHandProps) => {
       void import('../constants/hands').then(({ HANDS, MANGAN_HANDS }) => {
         setHands(HANDS)
         setManganHands(MANGAN_HANDS)
-        setHand(getRandomHand(isMangan ? MANGAN_HANDS : HANDS, localYaku))
+        setHand(getRandomHand(isMangan ? MANGAN_HANDS : HANDS, isLocalYaku))
       }),
-    [isMangan, localYaku]
+    [isMangan, isLocalYaku]
   )
 
   const next = useCallback(() => {
     const targetHands = isMangan ? manganHands : hands
-    if (targetHands) setHand(getRandomHand(targetHands, localYaku))
-  }, [hands, isMangan, localYaku, manganHands])
+    if (targetHands) setHand(getRandomHand(targetHands, isLocalYaku))
+  }, [hands, isLocalYaku, isMangan, manganHands])
 
   return [hand, next] as const
 }

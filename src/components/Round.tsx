@@ -1,18 +1,20 @@
-import { Dispatch, FC, SetStateAction } from 'react'
+import { FC } from 'react'
 import { Card, Space, Statistic, Switch } from 'antd'
 
 import Mahgen from './Mahgen'
 import { Hand } from '../hooks/useHand'
 
+import { useAtom } from 'jotai'
+import { isLocalYakuAtom, isManganAtom } from '../store/mode'
+
 interface RoundProps {
   hand: Hand
-  isMangan: boolean
-  setIsMangan: Dispatch<SetStateAction<boolean>>
-  localYaku: boolean
-  setLocalYaku: Dispatch<SetStateAction<boolean>>
 }
 
-const Round: FC<RoundProps> = ({ hand, isMangan, setIsMangan, localYaku, setLocalYaku }) => {
+const Round: FC<RoundProps> = ({ hand }) => {
+  const [isMangan, setIsMangan] = useAtom(isManganAtom)
+  const [isLocalYaku, setIsLocalYaku] = useAtom(isLocalYakuAtom)
+
   const { type, closed, taken, bakaze, jikaze } = hand
   return (
     <Card
@@ -20,7 +22,7 @@ const Round: FC<RoundProps> = ({ hand, isMangan, setIsMangan, localYaku, setLoca
       extra={
         <Space>
           <Switch checkedChildren="만관" unCheckedChildren="전부" value={isMangan} onChange={setIsMangan} />
-          <Switch checkedChildren="로컬" unCheckedChildren="보통" value={localYaku} onChange={setLocalYaku} />
+          <Switch checkedChildren="로컬" unCheckedChildren="보통" value={isLocalYaku} onChange={setIsLocalYaku} />
         </Space>
       }
     >

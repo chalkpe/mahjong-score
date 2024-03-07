@@ -7,10 +7,7 @@ import Result from './components/Result'
 import GuessHan from './components/GuessHan'
 
 const App: FC = () => {
-  const [isMangan, setIsMangan] = useState(false)
-  const [localYaku, setLocalYaku] = useState(false)
-
-  const [hand, next] = useHand({ isMangan, localYaku })
+  const [hand, next] = useHand()
   const [answerHan, setAnswerHan] = useState<number>()
 
   if (!hand) return 'Loading...'
@@ -18,7 +15,7 @@ const App: FC = () => {
 
   return (
     <Space direction="vertical">
-      <Round hand={hand} isMangan={isMangan} setIsMangan={setIsMangan} localYaku={localYaku} setLocalYaku={setLocalYaku} />
+      <Round hand={hand} />
       <GuessHan han={result.han} answer={answerHan} setAnswer={setAnswerHan} />
       {answerHan !== undefined && (
         <Result
