@@ -7,7 +7,7 @@ import Result from './components/Result'
 import GuessHan from './components/GuessHan'
 
 const App: FC = () => {
-  const hand = useHand()
+  const [hand, next] = useHand()
   const [answerHan, setAnswerHan] = useState<number>()
 
   if (!hand) return 'Loading...'
@@ -17,7 +17,10 @@ const App: FC = () => {
     <Space direction="vertical">
       <Round hand={hand} />
       <GuessHan han={result.han} answer={answerHan} setAnswer={setAnswerHan} />
-      {answerHan !== undefined && <Result hand={hand} title={answerHan === result.han ? '맞았습니다!' : '틀렸습니다!'} />}
+      {answerHan !== undefined && <Result hand={hand} title={answerHan === result.han ? '맞았습니다!' : '틀렸습니다!'} next={() => {
+        setAnswerHan(undefined)
+        next()
+      }} />}
     </Space>
   )
 }

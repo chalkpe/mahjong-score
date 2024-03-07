@@ -1,6 +1,6 @@
 import Riichi from 'riichi'
 import translation from '../constants/translation'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 const calc = (hand: string): Riichi.Result => {
   const result = new Riichi(hand, { allLocalYaku: true }).calc()
@@ -53,10 +53,21 @@ const getRandomHand = (hands: string[]): Hand => {
 }
 
 const useHand = () => {
+  const [hands, setHands] = useState<string[]>()
   const [hand, setHand] = useState<Hand>()
-  useEffect(() => void import('../constants/hands').then(({ HANDS }) => setHand(getRandomHand(HANDS))), [])
 
-  return hand
+  useEffect(
+    () =>
+      void import('../constants/hands').then(({ HANDS }) => {
+        setHands(HANDS)
+        setHand(getRandomHand(HANDS))
+      }),
+    []
+  )
+
+  const next = useCallback(() => hands && setHand(getRandomHand(hands)), [hands])
+
+  return [hand, next] as const
 }
 
 export default useHand
