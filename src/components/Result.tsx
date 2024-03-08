@@ -1,6 +1,11 @@
 import { FC } from 'react'
 import { Button, Card, Space, Statistic } from 'antd'
+import { SyncOutlined } from '@ant-design/icons'
+
 import { Hand } from '../hooks/useHand'
+
+import { useSetAtom } from 'jotai'
+import { resetAtom } from '../store/guess'
 
 interface ResultProps {
   hand: Hand
@@ -10,8 +15,23 @@ interface ResultProps {
 
 const Result: FC<ResultProps> = ({ hand, title, next }) => {
   const { result } = hand
+  const reset = useSetAtom(resetAtom)
+
   return (
-    <Card title={title} actions={[<Button onClick={next}>다음 문제</Button>]}>
+    <Card
+      title={title}
+      extra={
+        <Button
+          icon={<SyncOutlined />}
+          onClick={() => {
+            reset()
+            next()
+          }}
+        >
+          다음 문제
+        </Button>
+      }
+    >
       <Space direction="horizontal" size="large">
         {result.yakuman ? (
           <Statistic title="부판" value={result.yakuman === 1 ? '역만' : result.yakuman + '배역만'} />

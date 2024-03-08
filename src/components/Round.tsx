@@ -4,7 +4,8 @@ import { Card, Space, Statistic, Switch } from 'antd'
 import Mahgen from './Mahgen'
 import { Hand } from '../hooks/useHand'
 
-import { useAtom } from 'jotai'
+import { useAtom, useSetAtom } from 'jotai'
+import { resetAtom } from '../store/guess'
 import { isLocalYakuAtom, isManganAtom } from '../store/mode'
 
 interface RoundProps {
@@ -12,6 +13,7 @@ interface RoundProps {
 }
 
 const Round: FC<RoundProps> = ({ hand }) => {
+  const reset = useSetAtom(resetAtom)
   const [isMangan, setIsMangan] = useAtom(isManganAtom)
   const [isLocalYaku, setIsLocalYaku] = useAtom(isLocalYakuAtom)
 
@@ -21,8 +23,24 @@ const Round: FC<RoundProps> = ({ hand }) => {
       title="화료"
       extra={
         <Space>
-          <Switch checkedChildren="만관" unCheckedChildren="전부" value={isMangan} onChange={setIsMangan} />
-          <Switch checkedChildren="로컬" unCheckedChildren="보통" value={isLocalYaku} onChange={setIsLocalYaku} />
+          <Switch
+            checkedChildren="만관"
+            unCheckedChildren="전부"
+            value={isMangan}
+            onChange={(value) => {
+              reset()
+              setIsMangan(value)
+            }}
+          />
+          <Switch
+            checkedChildren="로컬"
+            unCheckedChildren="보통"
+            value={isLocalYaku}
+            onChange={(value) => {
+              reset()
+              setIsLocalYaku(value)
+            }}
+          />
         </Space>
       }
     >
