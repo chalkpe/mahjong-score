@@ -46,7 +46,7 @@ const Result: FC<ResultProps> = ({ hand, title, next }) => {
         </Button>
       }
     >
-      <Space direction="horizontal" size="large">
+      <Space direction="horizontal" size="large" wrap>
         {result.yakuman ? (
           <Statistic title="부판" value={result.yakuman === 1 ? '역만' : result.yakuman + '배역만'} />
         ) : (
