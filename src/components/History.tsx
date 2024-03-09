@@ -33,7 +33,7 @@ export const History: FC = () => {
     >
       <Table
         pagination={false}
-        dataSource={history}
+        dataSource={history.slice().reverse()}
         columns={[
           { title: '판수', dataIndex: 'han', render: (han) => diff(han, '판') },
           { title: '부수', dataIndex: 'fu', render: (fu) => diff(fu, '부') },
