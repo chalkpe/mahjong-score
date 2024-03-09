@@ -17,7 +17,6 @@ interface ResultProps {
 const Result: FC<ResultProps> = ({ hand, title, next }) => {
   const { result } = hand
 
-
   const fu = useAtomValue(fuAtom)
   const han = useAtomValue(hanAtom)
   const ten = useAtomValue(tenAtom)
