@@ -11,6 +11,7 @@ import useHand from './hooks/useHand'
 
 import { useAtomValue } from 'jotai'
 import { fuAtom, hanAtom, tenAtom } from './store/guess'
+import { History } from './components/History'
 
 interface Progress extends StepProps {
   content: JSX.Element
@@ -77,6 +78,7 @@ const App: FC = () => {
       ) : (
         progress.find((step) => step.status === 'wait')?.content
       )}
+      <History />
     </Space>
   )
 }

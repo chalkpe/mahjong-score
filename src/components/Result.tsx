@@ -1,11 +1,12 @@
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import { Button, Card, Space, Statistic } from 'antd'
 import { SyncOutlined } from '@ant-design/icons'
 
 import { Hand } from '../hooks/useHand'
 
-import { useSetAtom } from 'jotai'
-import { resetAtom } from '../store/guess'
+import { useAtomValue, useSetAtom } from 'jotai'
+import { fuAtom, hanAtom, resetAtom, tenAtom } from '../store/guess'
+import { historyAtom } from '../store/history'
 
 interface ResultProps {
   hand: Hand
@@ -15,19 +16,33 @@ interface ResultProps {
 
 const Result: FC<ResultProps> = ({ hand, title, next }) => {
   const { result } = hand
+
+
+  const fu = useAtomValue(fuAtom)
+  const han = useAtomValue(hanAtom)
+  const ten = useAtomValue(tenAtom)
+
   const reset = useSetAtom(resetAtom)
+  const setHistory = useSetAtom(historyAtom)
+
+  const handleNext = useCallback(() => {
+    setHistory((history) => [
+      ...history,
+      {
+        fu: [result.fu, fu ?? null],
+        han: [result.han, han ?? null],
+        ten: [result.ten, ten ?? null],
+      },
+    ])
+    reset()
+    next()
+  }, [setHistory, reset, next, result.fu, result.han, result.ten, fu, han, ten])
 
   return (
     <Card
       title={title}
       extra={
-        <Button
-          icon={<SyncOutlined />}
-          onClick={() => {
-            reset()
-            next()
-          }}
-        >
+        <Button icon={<SyncOutlined />} onClick={handleNext}>
           다음 문제
         </Button>
       }

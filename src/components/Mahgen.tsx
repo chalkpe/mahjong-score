@@ -23,7 +23,7 @@ interface MahgenProps {
   sequence: string
   showError?: boolean
   riverMode?: boolean
-  size?: 'small' | 'large'
+  size: number
 }
 
 const Mahgen: FC<MahgenProps> = ({ sequence, showError, riverMode, size }) => {
@@ -31,8 +31,10 @@ const Mahgen: FC<MahgenProps> = ({ sequence, showError, riverMode, size }) => {
 
   useEffect(() => {
     if (ref.current) {
-      ref.current.shadowRoot!.querySelector('img')!.style.height =
-        size === 'small' ? '50px' : 'unset'
+      const img = ref.current.shadowRoot!.querySelector('img')!
+
+      img.style.width = `min(calc(50px * ${size}), calc(5vw * ${size}))`
+
     }
   }, [size])
 
