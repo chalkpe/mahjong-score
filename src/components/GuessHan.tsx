@@ -10,7 +10,7 @@ interface GuessHanProps {
 const GuessHan: FC<GuessHanProps> = ({ han }) => {
   const [answer, setAnswer] = useAtom(hanAtom)
   return (
-    <Card title={"판수는?"}>
+    <Card title={'판수는?'}>
       <Space wrap>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((i) => (
           <Button

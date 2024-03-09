@@ -10,7 +10,7 @@ interface GuessFuProps {
 const GuessFu: FC<GuessFuProps> = ({ fu }) => {
   const [answer, setAnswer] = useAtom(fuAtom)
   return (
-    <Card title={"부수는?"}>
+    <Card title={'부수는?'}>
       <Space wrap>
         {[20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130].map((i) => (
           <Button

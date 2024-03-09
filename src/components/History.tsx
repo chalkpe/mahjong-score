@@ -22,7 +22,15 @@ export const History: FC = () => {
   )
 
   return (
-    <Card title="기록" styles={{ body: { padding: 0 } }} extra={<Button onClick={() => setHistory([])} danger>리셋</Button>}>
+    <Card
+      title="기록"
+      styles={{ body: { padding: 0 } }}
+      extra={
+        <Button onClick={() => setHistory([])} danger>
+          리셋
+        </Button>
+      }
+    >
       <Table
         pagination={false}
         dataSource={history}

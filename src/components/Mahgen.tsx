@@ -11,10 +11,7 @@ declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
-      'mah-gen': React.DetailedHTMLProps<
-        React.HTMLAttributes<MahgenElement>,
-        MahgenElement
-      >
+      'mah-gen': React.DetailedHTMLProps<React.HTMLAttributes<MahgenElement>, MahgenElement>
     }
   }
 }
@@ -32,9 +29,7 @@ const Mahgen: FC<MahgenProps> = ({ sequence, showError, riverMode, size }) => {
   useEffect(() => {
     if (ref.current) {
       const img = ref.current.shadowRoot!.querySelector('img')!
-
       img.style.width = `min(calc(50px * ${size}), calc(5vw * ${size}))`
-
     }
   }, [size])
 
