@@ -24,7 +24,7 @@ export const History: FC = () => {
   return (
     <Card
       title="기록"
-      styles={{ body: { padding: 0 } }}
+      styles={{ body: { padding: 0, overflow: 'hidden' } }}
       extra={
         <Button onClick={() => setHistory([])} danger>
           리셋
