@@ -25,8 +25,8 @@ export interface Hand {
   type: 'ron' | 'tsumo'
   closed: string
   taken: string
-  bakaze: string
-  jikaze: string
+  bakaze: '1' | '2' | '3' | '4'
+  jikaze: '1' | '2' | '3' | '4'
 }
 
 const getRandomHand = (hands: string[], isLocalYaku: boolean): Hand => {
@@ -42,8 +42,8 @@ const getRandomHand = (hands: string[], isLocalYaku: boolean): Hand => {
       type: 'ron',
       closed: parts[0],
       taken: parts[1],
-      bakaze: parts[2][0],
-      jikaze: parts[2][1],
+      bakaze: parts[2][0] as '1' | '2' | '3' | '4',
+      jikaze: parts[2][1] as '1' | '2' | '3' | '4',
     }
   } else {
     return {
@@ -51,8 +51,8 @@ const getRandomHand = (hands: string[], isLocalYaku: boolean): Hand => {
       type: 'tsumo',
       closed: parts[0].slice(0, -2),
       taken: parts[0].slice(-2),
-      bakaze: parts[1][0],
-      jikaze: parts[1][1],
+      bakaze: parts[1][0] as '1' | '2' | '3' | '4',
+      jikaze: parts[1][1] as '1' | '2' | '3' | '4',
     }
   }
 }

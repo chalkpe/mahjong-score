@@ -6,12 +6,12 @@ import GuessHan from './components/GuessHan'
 import GuessFu from './components/GuessFu'
 import GuessTen from './components/GuessTen'
 import Result from './components/Result'
+import HistoryView from './components/HistoryView'
 
 import useHand from './hooks/useHand'
 
 import { useAtomValue } from 'jotai'
 import { fuAtom, hanAtom, tenAtom } from './store/guess'
-import { History } from './components/History'
 
 interface Progress extends StepProps {
   content: JSX.Element
@@ -78,7 +78,7 @@ const App: FC = () => {
       ) : (
         progress.find((step) => step.status === 'wait')?.content
       )}
-      <History />
+      <HistoryView />
     </Space>
   )
 }

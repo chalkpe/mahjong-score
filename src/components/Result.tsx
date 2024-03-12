@@ -15,7 +15,7 @@ interface ResultProps {
 }
 
 const Result: FC<ResultProps> = ({ hand, title, next }) => {
-  const { result } = hand
+  const { jikaze, type, result } = hand
 
   const fu = useAtomValue(fuAtom)
   const han = useAtomValue(hanAtom)
@@ -28,6 +28,8 @@ const Result: FC<ResultProps> = ({ hand, title, next }) => {
     setHistory((history) => [
       ...history,
       {
+        jikaze,
+        type,
         fu: [result.fu, fu ?? null],
         han: [result.han, han ?? null],
         ten: [result.ten, ten ?? null],
@@ -35,7 +37,7 @@ const Result: FC<ResultProps> = ({ hand, title, next }) => {
     ])
     reset()
     next()
-  }, [setHistory, reset, next, result.fu, result.han, result.ten, fu, han, ten])
+  }, [setHistory, reset, next, jikaze, type, result.fu, result.han, result.ten, fu, han, ten])
 
   return (
     <Card
